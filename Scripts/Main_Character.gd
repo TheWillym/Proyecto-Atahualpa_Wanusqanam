@@ -1,41 +1,100 @@
 extends CharacterBody2D
 
-@export var moveSpeed := 25
-@export var maxSpeed := 50
+	#VARIABLES DE MOVIMIENTO
 
-@export var jumpHeight := - 150
-@export var maxJump := 1
-@export var numJump := 0
+#Variable de movimiento horizontal.
+@export var move_Speed = 60
 
+#Variables de esquiva. 
+@export var move_Dodge = 120
+@export var time_Dodge = 0.5
+var current_Time_Dodge = 0
+@export var duplicate_Time_Dodge = 0.05
+var current_Duplicate_Time_Dodge = 0
+@export var duplicate_Time_Life = 0.3
+var is_dodging = false
+
+#Variables de salto.
+@export var jump_Height = - 150
+@export var max_Jump = 1
+@export var num_Jump = 0
+
+#Variable de asignación del sprite.
 @onready var sprite = $Sprite2D
 
+#Variable de gravedad.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+	#PROCESOS
+
+#Proceso para la gravedad.
 func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
-
-func _process(delta):
-	movePJ()
-	jump()
 	
-func jump():
-	if is_on_floor() && numJump != 0:
-		numJump = 0
-
-	if numJump < maxJump:
+#Proceso para el salto, aquí se determina la cantidad de saltos desbloqueables.
+	if is_on_floor() && num_Jump != 0:
+		num_Jump = 0
+	if num_Jump < max_Jump:
 		if Input.is_action_just_pressed("ui_accept"):
-			velocity.y = jumpHeight
-			numJump += 1
-				
-func movePJ():
-	if Input.is_action_pressed("Right"):
-		sprite.flip_h= false
-		velocity.x = min(velocity.x+moveSpeed,maxSpeed)
-	elif Input.is_action_pressed("Left"):
-		sprite.flip_h= true
-		velocity.x = max(velocity.x-moveSpeed,-maxSpeed)
-	else:
-		velocity.x = move_toward(velocity.x, 0, maxSpeed)
+			velocity.y = jump_Height
+			num_Jump += 1
 
+#Proceso para el movimiento horizontal, aquí se determina la dirección del movimiento
+#y el cambio de dirección del sprite; esta condicionado con el proceso de la esquiva.
+	var direction_Move = Input.get_axis("Right", "Left")
+	if !is_dodging:
+		if direction_Move:
+			if direction_Move > 0:
+				$Sprite2D.scale.x = 1
+				velocity.x = direction_Move - move_Speed
+			else:
+				$Sprite2D.scale.x = -1
+				velocity.x = direction_Move + move_Speed
+		else:
+			velocity.x = move_toward(velocity.x, 0, move_Speed)
+	else:
+		if is_dodging:
+			velocity.x = lerp(velocity.x, 0.0, 0.1)
+		else:
+			velocity.x = move_toward(velocity.x, 0, move_Speed)
+
+#Proceso para la esquiva.
+	if is_dodging:
+		current_Time_Dodge += delta
+		current_Duplicate_Time_Dodge += delta
+		if current_Time_Dodge >= time_Dodge:
+			current_Duplicate_Time_Dodge = 0.0
+			current_Time_Dodge = 0.0
+			is_dodging = false
+		if current_Duplicate_Time_Dodge >= duplicate_Time_Dodge:
+			current_Duplicate_Time_Dodge = 0.0
+#			createDuplicate()
+	if is_dodging == false && Input.is_action_just_pressed("Dodge"):
+		is_dodging = true
+		if $Sprite2D.scale.x == 1:
+			velocity.x = move_Dodge
+		else:
+			velocity.x = -move_Dodge
+#		createDuplicate()	
+		
 	move_and_slide()
+	
+#func createDuplicate():
+#	var duplicate = $Sprite2D.duplicate(true)
+#	duplicate.material = $Sprite2D.material.duplicate(true)
+#	duplicate.material.set_shader_parameter("opacity", 0.7)
+#	duplicate.material.set_shader_parameter("r", 0.0)
+#	duplicate.material.set_shader_parameter("g", 0.0)
+#	duplicate.material.set_shader_parameter("b", 0.0)
+#	duplicate.material.set_shader_parameter("mix_color", 0.6)
+#	duplicate.position.y += position.y
+#	if $Sprite2D.scale.x == -1:
+#		duplicate.position.x = position.x - duplicate.position.x
+#	else:
+#		duplicate.position.x += position.x
+#	duplicate.z_idex -= 1
+#	get_parent().add_child(duplicate)
+#	await get_tree().create_timer(duplicate_Time_Life).timeout
+#	duplicate.queue_free()
+	
