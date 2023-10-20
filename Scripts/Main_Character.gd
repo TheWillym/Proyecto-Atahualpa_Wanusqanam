@@ -52,11 +52,15 @@ func _physics_process(delta):
 				$Sprite2D.scale.x = 1
 				velocity.x = direction_Move + move_Speed
 		else:
+			$AnimationPlayer.play("Idle")
+			$AnimationPlayer.speed_scale = 1.0
 			velocity.x = move_toward(velocity.x, 0, move_Speed)
 	else:
 		if is_dodging:
 			velocity.x = lerp(velocity.x, 0.0, 0.1)
 		else:
+			$AnimationPlayer.play("Idle")
+			$AnimationPlayer.speed_scale = 1.0
 			velocity.x = move_toward(velocity.x, 0, move_Speed)
 
 #Proceso para la esquiva.
