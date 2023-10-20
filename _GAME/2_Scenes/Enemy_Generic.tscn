@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://c8ga8c08ukimn"]
+
+[ext_resource type="Texture2D" uid="uid://kh0mo4c6h3xv" path="res://_GAME/1_Art/2_Sprites/7_Enemies/Enemigo_Generico_Mark_1.png" id="1_8r3bs"]
+[ext_resource type="Script" path="res://Scripts/Enemy_Generic.gd" id="1_nyd4l"]
+[ext_resource type="PackedScene" uid="uid://bidcuglf4xbvi" path="res://_GAME/2_Scenes/Hitbox_Component.tscn" id="2_ok618"]
+[ext_resource type="PackedScene" uid="uid://bk5ilxfdesfoq" path="res://_GAME/2_Scenes/Health_Component.tscn" id="3_2dbff"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2eb2k"]
+radius = 6.5
+height = 34.0
+
+[node name="Enemy_Generic" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 27
+script = ExtResource("1_nyd4l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 1)
+shape = SubResource("CapsuleShape2D_2eb2k")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_8r3bs")
+
+[node name="Hitbox_Component" parent="." instance=ExtResource("2_ok618")]
+
+[node name="Health_Component" parent="." instance=ExtResource("3_2dbff")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

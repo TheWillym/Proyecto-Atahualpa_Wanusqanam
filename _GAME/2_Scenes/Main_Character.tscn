@@ -1,10 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://cpamrvhl58p5c"]
+[gd_scene load_steps=9 format=3 uid="uid://cpamrvhl58p5c"]
 
 [ext_resource type="Script" path="res://Scripts/Main_Character.gd" id="1_77l1r"]
 [ext_resource type="Texture2D" uid="uid://7qctk8t5ugvb" path="res://_GAME/1_Art/2_Sprites/6_Characters/P._Principal_Mark_2_cooregido1-Idle-sheet.png" id="2_41hql"]
+[ext_resource type="PackedScene" uid="uid://bidcuglf4xbvi" path="res://_GAME/2_Scenes/Hitbox_Component.tscn" id="3_wcx84"]
+[ext_resource type="PackedScene" uid="uid://bk5ilxfdesfoq" path="res://_GAME/2_Scenes/Health_Component.tscn" id="4_m5ppv"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yvi27"]
-size = Vector2(14, 34)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_trmb3"]
+radius = 7.0
+height = 34.0
 
 [sub_resource type="Animation" id="Animation_sixtv"]
 resource_name = "Idle"
@@ -43,7 +46,7 @@ _data = {
 "RESET": SubResource("Animation_3ni5c")
 }
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="Main_Character" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 29
 script = ExtResource("1_77l1r")
@@ -51,11 +54,15 @@ max_Jump = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
-shape = SubResource("RectangleShape2D_yvi27")
+shape = SubResource("CapsuleShape2D_trmb3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_41hql")
 hframes = 4
+
+[node name="Hitbox_Component" parent="." instance=ExtResource("3_wcx84")]
+
+[node name="Health_Component" parent="." instance=ExtResource("4_m5ppv")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -37)

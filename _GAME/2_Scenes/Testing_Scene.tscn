@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b80mdalls5nny"]
+[gd_scene load_steps=6 format=3 uid="uid://b80mdalls5nny"]
 
 [ext_resource type="Texture2D" uid="uid://dlimrm0saj0k7" path="res://_GAME/1_Art/2_Sprites/2_Tilesets/tileset_dirt_temporal.png" id="1_2em8f"]
 [ext_resource type="PackedScene" uid="uid://cpamrvhl58p5c" path="res://_GAME/2_Scenes/Main_Character.tscn" id="2_3dc4x"]
+[ext_resource type="PackedScene" uid="uid://c8ga8c08ukimn" path="res://_GAME/2_Scenes/Enemy_Generic.tscn" id="3_qutdh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t5o52"]
 texture = ExtResource("1_2em8f")
@@ -101,3 +102,6 @@ layer_0/tile_data = PackedInt32Array(-131072, 131072, 1, -65536, 131072, 2, -1, 
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_3dc4x")]
 position = Vector2(127, -50)
+
+[node name="Enemy_Generic" parent="." instance=ExtResource("3_qutdh")]
+position = Vector2(530, -114)
