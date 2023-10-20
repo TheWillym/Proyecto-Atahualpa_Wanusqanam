@@ -46,10 +46,10 @@ func _physics_process(delta):
 	if !is_dodging:
 		if direction_Move:
 			if direction_Move > 0:
-				$Sprite2D.scale.x = 1
+				$Sprite2D.scale.x = -1
 				velocity.x = direction_Move - move_Speed
 			else:
-				$Sprite2D.scale.x = -1
+				$Sprite2D.scale.x = 1
 				velocity.x = direction_Move + move_Speed
 		else:
 			velocity.x = move_toward(velocity.x, 0, move_Speed)
@@ -73,9 +73,9 @@ func _physics_process(delta):
 	if is_dodging == false && Input.is_action_just_pressed("Dodge"):
 		is_dodging = true
 		if $Sprite2D.scale.x == 1:
-			velocity.x = move_Dodge
-		else:
 			velocity.x = -move_Dodge
+		else:
+			velocity.x = move_Dodge
 #		createDuplicate()	
 		
 	move_and_slide()
