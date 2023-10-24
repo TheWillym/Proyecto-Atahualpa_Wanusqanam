@@ -1,6 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://dofvrcki7gdq8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_16n12"]
+radius = 100.0
 
 [node name="Sensor" type="Area2D"]
 

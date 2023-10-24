@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cpamrvhl58p5c" path="res://_GAME/2_Scenes/Main_Character.tscn" id="1_1wyn1"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Scene_Prototype" type="Node2D"]
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_1wyn1")]
 position = Vector2(17, -30)

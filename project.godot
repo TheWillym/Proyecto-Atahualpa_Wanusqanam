@@ -49,6 +49,7 @@ Dodge={
 2d_physics/layer_3="Enemy"
 2d_physics/layer_4="Tramps"
 2d_physics/layer_5="DeadZones"
+2d_physics/layer_6="Objects"
 
 [physics]
 

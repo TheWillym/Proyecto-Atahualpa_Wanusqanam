@@ -1,12 +1,21 @@
 extends CharacterBody2D
+class_name Main_Character
 
-	#VARIABLES DE MOVIMIENTO
+	#VARIABLES PARA EL MOVIMIENTO
+
+#Variable de gravedad.
+var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 #Variable de movimiento horizontal.
 @export var move_Speed = 60
 
+#Variables de salto.
+@export var jump_Height = - 150
+@export var max_Jump = 1
+@export var num_Jump = 0
+
 #Variables de esquiva. 
-@export var move_Dodge = 120
+@export var move_Dodge = 300
 @export var time_Dodge = 0.5
 var current_Time_Dodge = 0
 @export var duplicate_Time_Dodge = 0.05
@@ -14,16 +23,8 @@ var current_Duplicate_Time_Dodge = 0
 @export var duplicate_Time_Life = 0.3
 var is_dodging = false
 
-#Variables de salto.
-@export var jump_Height = - 150
-@export var max_Jump = 1
-@export var num_Jump = 0
-
 #Variable de asignación del sprite.
 @onready var sprite = $Sprite2D
-
-#Variable de gravedad.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 	#PROCESOS
 
@@ -74,12 +75,12 @@ func _physics_process(delta):
 		if current_Duplicate_Time_Dodge >= duplicate_Time_Dodge:
 			current_Duplicate_Time_Dodge = 0.0
 #			createDuplicate()
-	if is_dodging == false && Input.is_action_just_pressed("Dodge"):
+	if is_dodging == false && Input.is_action_just_pressed("Dodge") && is_on_floor():
 		is_dodging = true
 		if $Sprite2D.scale.x == 1:
-			velocity.x = -move_Dodge
-		else:
 			velocity.x = move_Dodge
+		else:
+			velocity.x = -move_Dodge
 #		createDuplicate()	
 		
 	move_and_slide()
