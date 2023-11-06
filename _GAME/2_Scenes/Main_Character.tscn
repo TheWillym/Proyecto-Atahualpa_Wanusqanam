@@ -49,15 +49,6 @@ _data = {
 collision_layer = 2
 collision_mask = 57
 script = ExtResource("1_77l1r")
-move_Speed = null
-jump_Height = null
-max_Jump = null
-num_Jump = null
-knockback_vector = null
-move_Dodge = null
-time_Dodge = null
-duplicate_Time_Dodge = null
-duplicate_Time_Life = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
