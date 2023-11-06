@@ -14,6 +14,9 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var max_Jump = 1
 @export var num_Jump = 0
 
+#Variable del knockback.
+@export var knockback_vector := Vector2.ZERO
+
 #Variables de esquiva. 
 @export var move_Dodge = 300
 @export var time_Dodge = 0.5
@@ -81,9 +84,28 @@ func _physics_process(delta):
 			velocity.x = move_Dodge
 		else:
 			velocity.x = -move_Dodge
-#		createDuplicate()	
-		
+#		createDuplicate()
+
+func knockback():
+	if knockback_vector != Vector2.ZERO:
+		velocity = knockback_vector
+
+func hit_knockback():
+	if $Ray_right.is_colliding():
+		take_damage(Vector2(-200, -200))
+		print("Right")
+	elif $Ray_left.is_colliding():
+		take_damage(Vector2(200, -200))
+		print("Left")
+					
 	move_and_slide()
+	
+func take_Knockback(knockback_force = Vector2.ZERO, duration = 0.25):
+	if knockback_force != Vector2.ZERO:
+		knockback_vector = knockback_force
+
+		var knockback_tween = get_tree().create_tween()
+		knockback_tween.tween_property(self, "knockback_vector", Vector2.ZERO, duration)
 	
 #func createDuplicate():
 #	var duplicate = $Sprite2D.duplicate(true)

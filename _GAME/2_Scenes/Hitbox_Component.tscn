@@ -1,10 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://bidcuglf4xbvi"]
+[gd_scene load_steps=3 format=3 uid="uid://bidcuglf4xbvi"]
+
+[ext_resource type="Script" path="res://Scripts/Hitbox_Component.gd" id="1_dcpbs"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a3wkk"]
 radius = 6.0
 height = 32.0
 
 [node name="Hitbox_Component" type="Area2D"]
+script = ExtResource("1_dcpbs")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)

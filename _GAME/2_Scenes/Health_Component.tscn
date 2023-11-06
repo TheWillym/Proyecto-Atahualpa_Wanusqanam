@@ -1,11 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://bk5ilxfdesfoq"]
+[gd_scene load_steps=3 format=3 uid="uid://bk5ilxfdesfoq"]
+
+[ext_resource type="Script" path="res://Scripts/Health_Component.gd" id="1_a511q"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a3wkk"]
 radius = 6.0
 height = 32.0
 
 [node name="Health_Component" type="Area2D"]
+script = ExtResource("1_a511q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_a3wkk")
+
+[node name="Ray_Right" type="RayCast2D" parent="."]
+target_position = Vector2(-13, 0)
+
+[node name="Ray-Left" type="RayCast2D" parent="."]
+target_position = Vector2(13, 0)

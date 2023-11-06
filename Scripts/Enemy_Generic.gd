@@ -20,16 +20,16 @@ func _ready():
 
 func _physics_process(delta):
 	
-		#Proceso para el sensor.
+#		#Proceso para el sensor.
 #	if Main_Character != null:
-#		var direction = Main_Character.global_position
-#		var distance = global_position.direction_to(Main_Character.global_position)
+#		var direction = Main_Character.global_position - global_position
+#		var distance = global_position.distance_to(Main_Character.global_position)
 #		if distance > 100:
 #			movement.move(direction)
 		
 		#Proceso para la gravedad.
 	if not is_on_floor():
-		velocity.y += gravity * delta
+		velocity.y += gravity * delta	
 		
 	#Proceso del sensor.
 func _on_sensor_body_entered(body):
@@ -37,4 +37,5 @@ func _on_sensor_body_entered(body):
 
 func _on_sensor_body_exited(body):
 	Main_Character = null
+	pass
 	

@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://cpamrvhl58p5c"]
+[gd_scene load_steps=8 format=3 uid="uid://cpamrvhl58p5c"]
 
 [ext_resource type="Script" path="res://Scripts/Main_Character.gd" id="1_77l1r"]
 [ext_resource type="Texture2D" uid="uid://7qctk8t5ugvb" path="res://_GAME/1_Art/2_Sprites/6_Characters/P._Principal_Mark_2_cooregido1-Idle-sheet.png" id="2_41hql"]
-[ext_resource type="PackedScene" uid="uid://bidcuglf4xbvi" path="res://_GAME/2_Scenes/Hitbox_Component.tscn" id="3_wcx84"]
 [ext_resource type="PackedScene" uid="uid://bk5ilxfdesfoq" path="res://_GAME/2_Scenes/Health_Component.tscn" id="4_m5ppv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_trmb3"]
@@ -50,6 +49,15 @@ _data = {
 collision_layer = 2
 collision_mask = 57
 script = ExtResource("1_77l1r")
+move_Speed = null
+jump_Height = null
+max_Jump = null
+num_Jump = null
+knockback_vector = null
+move_Dodge = null
+time_Dodge = null
+duplicate_Time_Dodge = null
+duplicate_Time_Life = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
@@ -59,9 +67,10 @@ shape = SubResource("CapsuleShape2D_trmb3")
 texture = ExtResource("2_41hql")
 hframes = 4
 
-[node name="Hitbox_Component" parent="." instance=ExtResource("3_wcx84")]
-
 [node name="Health_Component" parent="." instance=ExtResource("4_m5ppv")]
+collision_layer = 2
+collision_mask = 0
+max_Health = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -37)

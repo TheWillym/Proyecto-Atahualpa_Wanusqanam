@@ -24,8 +24,13 @@ shape = SubResource("CapsuleShape2D_2eb2k")
 texture = ExtResource("1_8r3bs")
 
 [node name="Hitbox_Component" parent="." instance=ExtResource("2_ok618")]
+collision_layer = 0
+collision_mask = 2
 
 [node name="Health_Component" parent="." instance=ExtResource("3_2dbff")]
+collision_layer = 4
+collision_mask = 0
+max_Health = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
