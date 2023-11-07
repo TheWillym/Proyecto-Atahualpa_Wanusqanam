@@ -41,6 +41,7 @@ func _physics_process(delta):
 		num_Jump = 0
 	if num_Jump < max_Jump:
 		if Input.is_action_just_pressed("ui_accept"):
+			$AnimationPlayer.play("Jump")
 			velocity.y = jump_Height
 			num_Jump += 1
 
@@ -49,6 +50,7 @@ func _physics_process(delta):
 	var direction_Move = Input.get_axis("Right", "Left")
 	if !is_dodging:
 		if direction_Move:
+			$AnimationPlayer.play("Walk")
 			if direction_Move > 0:
 				$Sprite2D.scale.x = -1
 				velocity.x = direction_Move - move_Speed
