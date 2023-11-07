@@ -15,7 +15,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var num_Jump = 0
 
 #Variable del knockback.
-@export var knockback_vector = Vector2.ZERO
+#@export var knockback_vector = Vector2.ZERO
 
 #Variables de esquiva. 
 @export var move_Dodge = 300
@@ -48,7 +48,7 @@ func _physics_process(delta):
 #Proceso para el movimiento horizontal, aquí se determina la dirección del movimiento
 #y el cambio de dirección del sprite; esta condicionado con el proceso de la esquiva.
 	var direction_Move = Input.get_axis("Right", "Left")
-	if !is_dodging:
+	if !is_dodging && $TimerTakeDamage.is_stopped():
 		if direction_Move:
 			$AnimationPlayer.play("Walk")
 			if direction_Move > 0:
@@ -94,20 +94,28 @@ func _physics_process(delta):
 
 	move_and_slide()
 	
-func hit_Knockback():
-	if $Ray_right.is_colliding():
-		take_Knockback(Vector2(-200, -200))
-		print("Right")
-	elif $Ray_left.is_colliding():
-		take_Knockback(Vector2(200, -200))
-		print("Left")
+func take_damage(iPos: Vector2, iDamageAmount: int):
+	if !is_dodging && $TimerTakeDamage.is_stopped():
+		$TimerTakeDamage.start(0)
+		if (iPos.x < position.x):
+			velocity.x = 1100
+		else:
+			velocity.x = -1100
 
-func take_Knockback(knockback_force = Vector2.ZERO, duration = 0.25):
-	if knockback_force != Vector2.ZERO:
-		knockback_vector = knockback_force
-
-		var knockback_tween = get_tree().create_tween()
-		knockback_tween.tween_property(self, "knockback_vector", Vector2.ZERO, duration)
+#func hit_Knockback():
+#	if $Ray_right.is_colliding():
+#		take_Knockback(Vector2(-200, -200))
+#		print("Right")
+#	elif $Ray_left.is_colliding():
+#		take_Knockback(Vector2(200, -200))
+#		print("Left")
+#
+#func take_Knockback(knockback_force = Vector2.ZERO, duration = 0.25):
+#	if knockback_force != Vector2.ZERO:
+#		knockback_vector = knockback_force
+#
+#		var knockback_tween = get_tree().create_tween()
+#		knockback_tween.tween_property(self, "knockback_vector", Vector2.ZERO, duration)
 
 #func createDuplicate():
 #	var duplicate = $Sprite2D.duplicate(true)
@@ -127,3 +135,5 @@ func take_Knockback(knockback_force = Vector2.ZERO, duration = 0.25):
 #	await get_tree().create_timer(duplicate_Time_Life).timeout
 #	duplicate.queue_free()
 	
+func _on_timer_take_damage_timeout():
+		$TimerTakeDamage.stop()

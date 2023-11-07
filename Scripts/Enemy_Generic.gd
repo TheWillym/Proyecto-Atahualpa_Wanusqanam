@@ -31,6 +31,12 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta	
 		
+	var bodies = $Hitbox_Component.get_overlapping_bodies()
+	for body in bodies:
+		if "name" in body && body.name == "Main_Character":
+			body.take_damage(position, 10)
+		
+	move_and_slide()
 	#Proceso del sensor.
 func _on_sensor_body_entered(body):
 	Main_Character = body
@@ -38,4 +44,7 @@ func _on_sensor_body_entered(body):
 func _on_sensor_body_exited(body):
 	Main_Character = null
 	pass
-	
+
+func _on_hitbox_component_body_entered(body):
+	if "name" in body && body.name == "Main_Character":
+		body.take_damage(position, 10)

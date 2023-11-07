@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://do7o6lv72ualk" path="res://_GAME/2_Scenes/Movement.tscn" id="6_d5lop"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2eb2k"]
-radius = 6.5
+radius = 3.5
 height = 34.0
 
 [node name="Enemy_Generic" type="CharacterBody2D"]
@@ -24,7 +24,7 @@ shape = SubResource("CapsuleShape2D_2eb2k")
 texture = ExtResource("1_8r3bs")
 
 [node name="Hitbox_Component" parent="." instance=ExtResource("2_ok618")]
-collision_layer = 0
+collision_layer = 4
 collision_mask = 2
 
 [node name="Health_Component" parent="." instance=ExtResource("3_2dbff")]
@@ -40,5 +40,6 @@ collision_mask = 2
 
 [node name="Movement" parent="." instance=ExtResource("6_d5lop")]
 
+[connection signal="body_entered" from="Hitbox_Component" to="." method="_on_hitbox_component_body_entered"]
 [connection signal="body_entered" from="Sensor" to="." method="_on_sensor_body_entered"]
 [connection signal="body_exited" from="Sensor" to="." method="_on_sensor_body_exited"]
