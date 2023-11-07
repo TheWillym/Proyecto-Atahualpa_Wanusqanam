@@ -86,9 +86,9 @@ func _physics_process(delta):
 			velocity.x = -move_Dodge
 #		createDuplicate()
 
-func knockback():
-	if knockback_vector != Vector2.ZERO:
-		velocity = knockback_vector
+#func knockback():
+#	if knockback_vector != Vector2.ZERO:
+#		velocity = knockback_vector
 
 	move_and_slide()
 	
