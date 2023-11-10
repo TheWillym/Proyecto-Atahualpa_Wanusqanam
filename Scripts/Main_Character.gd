@@ -3,16 +3,19 @@ class_name Main_Character
 
 	#VARIABLES PARA EL MOVIMIENTO
 
-#Variable de gravedad.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-
 #Variable de movimiento horizontal.
 @export var move_Speed = 60
+#@export var acceleration = 1200.0
+#@export var friction = 1200.0
+#
+#var tick = 0
 
 #Variables de salto.
 @export var jump_Height = - 150
 @export var max_Jump = 1
 @export var num_Jump = 0
+
+@onready var movement : Movement = $"Movement" as Movement
 
 #Variable del knockback.
 #@export var knockback_vector = Vector2.ZERO
@@ -31,17 +34,18 @@ var is_dodging = false
 
 	#PROCESOS
 
+func _ready():
+	movement.setup(self)
+
 #Proceso para la gravedad.
 func _physics_process(delta):
-	if not is_on_floor():
-		velocity.y += gravity * delta
-	
+	movement.update(delta)
 #Proceso para el salto, aquí se determina la cantidad de saltos desbloqueables.
 	if is_on_floor() && num_Jump != 0:
 		num_Jump = 0
 	if num_Jump < max_Jump:
 		if Input.is_action_just_pressed("ui_accept"):
-			$AnimationPlayer.play("Jump")
+#			$AnimationPlayer.play("Jump")
 			velocity.y = jump_Height
 			num_Jump += 1
 
@@ -50,7 +54,7 @@ func _physics_process(delta):
 	var direction_Move = Input.get_axis("Right", "Left")
 	if !is_dodging && $TimerTakeDamage.is_stopped():
 		if direction_Move:
-			$AnimationPlayer.play("Walk")
+#			$AnimationPlayer.play("Walk")
 			if direction_Move > 0:
 				$Sprite2D.scale.x = -1
 				velocity.x = direction_Move - move_Speed
@@ -58,16 +62,16 @@ func _physics_process(delta):
 				$Sprite2D.scale.x = 1
 				velocity.x = direction_Move + move_Speed
 		else:
-			$AnimationPlayer.play("Idle")
+#			$AnimationPlayer.play("Idle")
 			$AnimationPlayer.speed_scale = 1.0
 			velocity.x = move_toward(velocity.x, 0, move_Speed)
 	else:
 		if is_dodging:
 			velocity.x = lerp(velocity.x, 0.0, 0.1)
 		else:
-			$AnimationPlayer.play("Idle")
+#			$AnimationPlayer.play("Idle")
 			$AnimationPlayer.speed_scale = 1.0
-			velocity.x = move_toward(velocity.x, 0, move_Speed)
+			velocity.x = move_toward(velocity.x, 0.0, move_Speed)
 
 #Proceso para la esquiva.
 	if is_dodging:

@@ -1,19 +1,24 @@
 extends Node
 class_name Movement
 
-#Variable de movimiento horizontal.
-@export var move_Speed_Global: float = 40
+@export var acceleration = 1200.0
+@export var friction = 1200.0
 
-#Asignación de variable.
-var character = CharacterBody2D
+var tick = 0
 
-func setup(character2D: CharacterBody2D):
-	character = character2D
+var player : Main_Character
+
+#Variable de gravedad.
+var gravity : int = ProjectSettings.get_setting("physics/2d/default_gravity")
+
+func setup(body):
+	player = body
+
+func update(delta):
 	
-func move(imput_vector: Vector2):
-	character.velocity = imput_vector.normalized() * move_Speed_Global
-	character.move_and_slide()
+	apply_gravity(delta)
 	
-func stop_movement():
-	character.velocity = Vector2.ZERO
-
+func apply_gravity(delta):
+	if not player.is_on_floor():
+		player.velocity.y += gravity * delta
+		player.velocity.y = clampf(player.velocity.y, -1200, 980)
