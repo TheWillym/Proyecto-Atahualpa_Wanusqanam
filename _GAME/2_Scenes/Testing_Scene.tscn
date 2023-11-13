@@ -95,7 +95,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_t5o52")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7q8bd"]
-size = Vector2(15, 4.97706)
+size = Vector2(12, 4.97706)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bbhgg"]
 size = Vector2(48, 6)
@@ -125,15 +125,15 @@ position = Vector2(612, -116)
 position = Vector2(871.895, -221.09)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="One_Way_Collisions/OWC_1"]
-position = Vector2(0.105103, 0.0901794)
+position = Vector2(0.10498, 0.0901794)
 shape = SubResource("RectangleShape2D_7q8bd")
 one_way_collision = true
 
 [node name="OWC_2" type="StaticBody2D" parent="One_Way_Collisions"]
-position = Vector2(951.892, -141.075)
+position = Vector2(951.914, -141.358)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="One_Way_Collisions/OWC_2"]
-position = Vector2(0.607971, -0.436478)
+position = Vector2(0.0856323, 0.357635)
 shape = SubResource("RectangleShape2D_7q8bd")
 one_way_collision = true
 
@@ -141,7 +141,7 @@ one_way_collision = true
 position = Vector2(983.96, -93.0254)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="One_Way_Collisions/OWC_3"]
-position = Vector2(0.039856, 0.0254211)
+position = Vector2(0.039978, 0.0254211)
 shape = SubResource("RectangleShape2D_7q8bd")
 one_way_collision = true
 
@@ -178,4 +178,4 @@ shape = SubResource("RectangleShape2D_bbhgg")
 one_way_collision = true
 
 [node name="Main_Character" parent="." instance=ExtResource("2_3dc4x")]
-position = Vector2(530, -114)
+position = Vector2(878, -51)

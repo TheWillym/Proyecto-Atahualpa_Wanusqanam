@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cpamrvhl58p5c"]
+[gd_scene load_steps=9 format=3 uid="uid://cpamrvhl58p5c"]
 
 [ext_resource type="Script" path="res://Scripts/Main_Character.gd" id="1_77l1r"]
 [ext_resource type="Texture2D" uid="uid://dxqsmia4ppau8" path="res://_GAME/1_Art/2_Sprites/6_Characters/Animations_Main_Character_Temp2.png" id="2_sp05c"]
@@ -10,7 +10,10 @@ radius = 7.0
 height = 34.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sujcg"]
-size = Vector2(4, 27)
+size = Vector2(2, 27)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pmgju"]
+size = Vector2(6, 2)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ks1ex"]
 size = Vector2(5, 1)
@@ -47,6 +50,10 @@ collision_mask = 64
 position = Vector2(0, 4.5)
 shape = SubResource("RectangleShape2D_sujcg")
 
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Ladder_Component"]
+position = Vector2(0, 18)
+shape = SubResource("RectangleShape2D_pmgju")
+
 [node name="Climb_UP_Component" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 128
@@ -58,7 +65,7 @@ shape = SubResource("RectangleShape2D_ks1ex")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -37)
 offset = Vector2(0, 15)
-zoom = Vector2(4.5, 4.5)
+zoom = Vector2(6, 6)
 limit_left = 0
 limit_top = -500
 limit_right = 1131

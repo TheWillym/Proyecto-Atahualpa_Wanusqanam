@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://djrx3ys25omkx" path="res://_GAME/1_Art/2_Sprites/4_Objects/Ladder_Temporal.png" id="1_kf7eg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yt1ci"]
-size = Vector2(6, 51.5)
+size = Vector2(4, 51.5)
 
 [node name="Ladder" type="Area2D" groups=["Ladder"]]
 collision_layer = 64
