@@ -10,6 +10,13 @@ class_name Main_Character
 #
 #var tick = 0
 
+var colliding_Ladder = false
+var going_up = false
+
+var colliding_Climb = false
+var climb_UP = false
+
+
 #Variables de salto.
 @export var jump_Height = - 150
 @export var max_Jump = 1
@@ -41,7 +48,7 @@ func _ready():
 func _physics_process(delta):
 	movement.update(delta)
 #Proceso para el salto, aquí se determina la cantidad de saltos desbloqueables.
-	if is_on_floor() && num_Jump != 0:
+	if is_on_floor() && !going_up && num_Jump != 0:
 		num_Jump = 0
 	if num_Jump < max_Jump:
 		if Input.is_action_just_pressed("ui_accept"):
@@ -72,7 +79,24 @@ func _physics_process(delta):
 #			$AnimationPlayer.play("Idle")
 			$AnimationPlayer.speed_scale = 1.0
 			velocity.x = move_toward(velocity.x, 0.0, move_Speed)
-
+			
+	if colliding_Ladder:
+		if Input.is_action_pressed("Up"):
+			going_up = true
+			velocity.y = -move_Speed
+			velocity.x = 0
+		elif Input.is_action_pressed("Down"):
+			going_up = true
+			velocity.y = move_Speed
+		else:
+			if going_up:
+				velocity.y = 0
+				
+	if colliding_Climb:
+		if Input.is_action_pressed("ui_accept"):
+			climb_UP = true
+			velocity.y = -200
+		
 #Proceso para la esquiva.
 	if is_dodging:
 		current_Time_Dodge += delta
@@ -97,6 +121,10 @@ func _physics_process(delta):
 #		velocity = knockback_vector
 
 	move_and_slide()
+	
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("Down") and is_on_floor():
+		position.y += 1.5
 	
 func take_damage(iPos: Vector2, iDamageAmount: int):
 	if !is_dodging && $TimerTakeDamage.is_stopped():
@@ -141,3 +169,27 @@ func take_damage(iPos: Vector2, iDamageAmount: int):
 	
 func _on_timer_take_damage_timeout():
 		$TimerTakeDamage.stop()
+
+
+func _on_ladder_component_area_exited(area):
+	area.get_name()
+	if area.is_in_group("Ladder"):
+		colliding_Ladder = false
+		going_up = false
+
+func _on_ladder_component_area_entered(area):
+	area.get_name()
+	if area.is_in_group("Ladder"):
+		colliding_Ladder = true
+
+
+func _on_climb_up_component_area_exited(area):
+	area.get_name()
+	if area.is_in_group("Climb"):
+		colliding_Climb = false
+		climb_UP = false
+
+func _on_climb_up_component_area_entered(area):
+	area.get_name()
+	if area.is_in_group("Climb"):
+		colliding_Climb = true

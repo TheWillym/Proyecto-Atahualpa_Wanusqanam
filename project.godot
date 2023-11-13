@@ -50,6 +50,8 @@ Dodge={
 2d_physics/layer_4="Tramps"
 2d_physics/layer_5="DeadZones"
 2d_physics/layer_6="Objects"
+2d_physics/layer_7="Ladders"
+2d_physics/layer_8="Climbs"
 
 [physics]
 

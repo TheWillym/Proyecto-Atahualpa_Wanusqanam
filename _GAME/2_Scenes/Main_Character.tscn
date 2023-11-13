@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cpamrvhl58p5c"]
+[gd_scene load_steps=8 format=3 uid="uid://cpamrvhl58p5c"]
 
 [ext_resource type="Script" path="res://Scripts/Main_Character.gd" id="1_77l1r"]
 [ext_resource type="Texture2D" uid="uid://dxqsmia4ppau8" path="res://_GAME/1_Art/2_Sprites/6_Characters/Animations_Main_Character_Temp2.png" id="2_sp05c"]
@@ -9,9 +9,15 @@
 radius = 7.0
 height = 34.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sujcg"]
+size = Vector2(4, 27)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ks1ex"]
+size = Vector2(5, 1)
+
 [node name="Main_Character" type="CharacterBody2D"]
 collision_layer = 2
-collision_mask = 61
+collision_mask = 125
 script = ExtResource("1_77l1r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -32,6 +38,22 @@ vframes = 9
 collision_layer = 2
 collision_mask = 0
 max_Health = 2
+
+[node name="Ladder_Component" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ladder_Component"]
+position = Vector2(0, 4.5)
+shape = SubResource("RectangleShape2D_sujcg")
+
+[node name="Climb_UP_Component" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Climb_UP_Component"]
+position = Vector2(0, 17)
+shape = SubResource("RectangleShape2D_ks1ex")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -37)
@@ -57,4 +79,8 @@ drag_bottom_margin = 0.1
 wait_time = 3.0
 one_shot = true
 
+[connection signal="area_entered" from="Ladder_Component" to="." method="_on_ladder_component_area_entered"]
+[connection signal="area_exited" from="Ladder_Component" to="." method="_on_ladder_component_area_exited"]
+[connection signal="area_entered" from="Climb_UP_Component" to="." method="_on_climb_up_component_area_entered"]
+[connection signal="area_exited" from="Climb_UP_Component" to="." method="_on_climb_up_component_area_exited"]
 [connection signal="timeout" from="TimerTakeDamage" to="." method="_on_timer_take_damage_timeout"]

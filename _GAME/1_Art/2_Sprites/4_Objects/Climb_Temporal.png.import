@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://otacnfl8w7ln"
-path="res://.godot/imported/Icon Temporal.png-5c0535ad3cfe2a973b61b183c17039e5.ctex"
+uid="uid://deipltfatx68e"
+path="res://.godot/imported/Climb_Temporal.png-bed0756f58a8a71f61a6c5763e107fb0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://_GAME/1_Art/2_Sprites/4_Objects/Icon Temporal.png"
-dest_files=["res://.godot/imported/Icon Temporal.png-5c0535ad3cfe2a973b61b183c17039e5.ctex"]
+source_file="res://_GAME/1_Art/2_Sprites/4_Objects/Climb_Temporal.png"
+dest_files=["res://.godot/imported/Climb_Temporal.png-bed0756f58a8a71f61a6c5763e107fb0.ctex"]
 
 [params]
 

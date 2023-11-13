@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://1tcw1j6lbf02"]
+
+[ext_resource type="Texture2D" uid="uid://deipltfatx68e" path="res://_GAME/1_Art/2_Sprites/4_Objects/Climb_Temporal.png" id="1_uvgx7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pjdp2"]
+size = Vector2(12, 10)
+
+[node name="Jumper" type="Area2D" groups=["Climb"]]
+scale = Vector2(0.5, 0.5)
+collision_layer = 128
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_uvgx7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_pjdp2")
