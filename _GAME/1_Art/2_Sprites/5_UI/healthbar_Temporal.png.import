@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dnst8o4gnalt4"
-path="res://.godot/imported/Icon Temporal.png-d54876916773fecc3163245075192565.ctex"
+uid="uid://wn24ukodqggt"
+path="res://.godot/imported/healthbar_Temporal.png-85e63d879bb6fa85a3f54b1d430fb766.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://_GAME/1_Art/2_Sprites/5_UI/Icon Temporal.png"
-dest_files=["res://.godot/imported/Icon Temporal.png-d54876916773fecc3163245075192565.ctex"]
+source_file="res://_GAME/1_Art/2_Sprites/5_UI/healthbar_Temporal.png"
+dest_files=["res://.godot/imported/healthbar_Temporal.png-85e63d879bb6fa85a3f54b1d430fb766.ctex"]
 
 [params]
 

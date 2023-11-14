@@ -13,8 +13,8 @@ class_name Main_Character
 var colliding_Ladder = false
 var going_up = false
 
-var colliding_Climb = false
-var climb_UP = false
+var colliding_Jumper = false
+var jump_UP = false
 
 
 #Variables de salto.
@@ -96,9 +96,9 @@ func _physics_process(delta):
 				velocity.y = 0
 
 				
-	if colliding_Climb:
+	if colliding_Jumper:
 		if Input.is_action_pressed("ui_accept"):
-			climb_UP = true
+			jump_UP = true
 			velocity.y = -200
 		
 #Proceso para la esquiva.
@@ -190,10 +190,10 @@ func _on_ladder_component_area_entered(area):
 func _on_climb_up_component_area_exited(area):
 	area.get_name()
 	if area.is_in_group("Climb"):
-		colliding_Climb = false
-		climb_UP = false
+		colliding_Jumper = false
+		jump_UP = false
 
 func _on_climb_up_component_area_entered(area):
 	area.get_name()
 	if area.is_in_group("Climb"):
-		colliding_Climb = true
+		colliding_Jumper = true

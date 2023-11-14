@@ -54,11 +54,11 @@ shape = SubResource("RectangleShape2D_sujcg")
 position = Vector2(0, 18)
 shape = SubResource("RectangleShape2D_pmgju")
 
-[node name="Climb_UP_Component" type="Area2D" parent="."]
+[node name="Jumper_Component" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 128
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Climb_UP_Component"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Jumper_Component"]
 position = Vector2(0, 17)
 shape = SubResource("RectangleShape2D_ks1ex")
 
@@ -88,6 +88,6 @@ one_shot = true
 
 [connection signal="area_entered" from="Ladder_Component" to="." method="_on_ladder_component_area_entered"]
 [connection signal="area_exited" from="Ladder_Component" to="." method="_on_ladder_component_area_exited"]
-[connection signal="area_entered" from="Climb_UP_Component" to="." method="_on_climb_up_component_area_entered"]
-[connection signal="area_exited" from="Climb_UP_Component" to="." method="_on_climb_up_component_area_exited"]
+[connection signal="area_entered" from="Jumper_Component" to="." method="_on_climb_up_component_area_entered"]
+[connection signal="area_exited" from="Jumper_Component" to="." method="_on_climb_up_component_area_exited"]
 [connection signal="timeout" from="TimerTakeDamage" to="." method="_on_timer_take_damage_timeout"]
