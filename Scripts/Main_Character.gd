@@ -88,9 +88,13 @@ func _physics_process(delta):
 		elif Input.is_action_pressed("Down"):
 			going_up = true
 			velocity.y = move_Speed
+		elif Input.is_action_pressed("ui_accept"):
+			going_up = false
+			velocity.y = 2 * -move_Speed
 		else:
 			if going_up:
 				velocity.y = 0
+
 				
 	if colliding_Climb:
 		if Input.is_action_pressed("ui_accept"):
