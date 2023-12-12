@@ -247,7 +247,7 @@ layer_0/tile_data = PackedInt32Array(-131072, 131072, 1, -65536, 131072, 2, -1, 
 [node name="Climb_Tile" type="TileMap" parent="." groups=["Climb"]]
 tile_set = SubResource("TileSet_y2xp4")
 format = 2
-layer_0/tile_data = PackedInt32Array(-458716, 589824, 1, -589785, 589824, 1, -589783, 589824, 1, -458714, 589824, 1, -458710, 589824, 1, -458708, 589824, 1, -327634, 589824, 1, -327632, 589824, 1, -589769, 589824, 1, -917455, 589824, 1)
+layer_0/tile_data = PackedInt32Array(-589785, 589824, 1, -589783, 589824, 1, -458710, 589824, 1, -458708, 589824, 1, -327634, 589824, 1, -327632, 589824, 1, -589769, 589824, 1, -917455, 589824, 1)
 
 [node name="Ladder1" parent="." instance=ExtResource("2_e6ff5")]
 position = Vector2(984, -76)

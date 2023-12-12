@@ -9,6 +9,8 @@ class_name Enemy
 
 #Variable de asignación para el sensor.
 var Main_Character: CollisionObject2D
+var test: HealthComponent
+
 
 #Variable de gravedad.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")

@@ -4,7 +4,7 @@ class_name Main_Character
 	#VARIABLES PARA EL MOVIMIENTO
 
 #Variable de movimiento horizontal.
-@export var move_Speed = 60
+@export var move_Speed = 80
 #@export var acceleration = 1200.0
 #@export var friction = 1200.0
 #
@@ -28,7 +28,7 @@ var jump_UP = false
 #@export var knockback_vector = Vector2.ZERO
 
 #Variables de esquiva. 
-@export var move_Dodge = 300
+@export var move_Dodge = 400
 @export var time_Dodge = 0.5
 var current_Time_Dodge = 0
 @export var duplicate_Time_Dodge = 0.05
@@ -99,7 +99,7 @@ func _physics_process(delta):
 	if colliding_Jumper:
 		if Input.is_action_pressed("ui_accept"):
 			jump_UP = true
-			velocity.y = -200
+			velocity.y = -500
 		
 #Proceso para la esquiva.
 	if is_dodging:
@@ -129,6 +129,8 @@ func _physics_process(delta):
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Down") and is_on_floor():
 		position.y += 1.5
+		
+
 	
 func take_damage(iPos: Vector2, iDamageAmount: int):
 	if !is_dodging && $TimerTakeDamage.is_stopped():
