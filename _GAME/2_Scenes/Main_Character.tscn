@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://cpamrvhl58p5c"]
 
 [ext_resource type="Script" path="res://Scripts/Main_Character.gd" id="1_77l1r"]
-[ext_resource type="Texture2D" uid="uid://dxqsmia4ppau8" path="res://_GAME/1_Art/2_Sprites/6_Characters/Animations_Main_Character_Temp2.png" id="2_sp05c"]
+[ext_resource type="Texture2D" uid="uid://bl6jfc7m6f4h7" path="res://_GAME/1_Art/2_Sprites/6_Characters/Animation-PJ-Sheet.png" id="2_3o4a0"]
 [ext_resource type="PackedScene" uid="uid://do7o6lv72ualk" path="res://_GAME/2_Scenes/Movement.tscn" id="3_4of06"]
 [ext_resource type="PackedScene" uid="uid://bk5ilxfdesfoq" path="res://_GAME/2_Scenes/Health_Component.tscn" id="4_m5ppv"]
 
@@ -29,9 +29,9 @@ shape = SubResource("CapsuleShape2D_trmb3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, 1)
-texture = ExtResource("2_sp05c")
+texture = ExtResource("2_3o4a0")
 hframes = 6
-vframes = 9
+vframes = 6
 
 [node name="Movement" parent="." instance=ExtResource("3_4of06")]
 

@@ -1,15 +1,15 @@
-[gd_scene load_steps=14 format=3 uid="uid://b80mdalls5nny"]
+[gd_scene load_steps=14 format=3 uid="uid://nax56n2yddob"]
 
-[ext_resource type="Texture2D" uid="uid://dlimrm0saj0k7" path="res://_GAME/1_Art/2_Sprites/2_Tilesets/tileset_dirt_temporal.png" id="1_2em8f"]
-[ext_resource type="Script" path="res://Scripts/Levels.gd" id="1_u854m"]
-[ext_resource type="PackedScene" uid="uid://cpamrvhl58p5c" path="res://_GAME/2_Scenes/Main_Character.tscn" id="2_3dc4x"]
-[ext_resource type="Texture2D" uid="uid://cery6e6oeppou" path="res://_GAME/1_Art/2_Sprites/2_Tilesets/tileset_lava_temporal.png" id="2_aa6fv"]
-[ext_resource type="PackedScene" uid="uid://4aewfudjo5ir" path="res://_GAME/2_Scenes/Ladder.tscn" id="2_e6ff5"]
-[ext_resource type="PackedScene" uid="uid://1tcw1j6lbf02" path="res://_GAME/2_Scenes/Jumper.tscn" id="3_mebr1"]
-[ext_resource type="PackedScene" uid="uid://tvmix8sry2al" path="res://_GAME/2_Scenes/Portal.tscn" id="6_3i3lm"]
+[ext_resource type="Texture2D" uid="uid://dlimrm0saj0k7" path="res://_GAME/1_Art/2_Sprites/2_Tilesets/tileset_dirt_temporal.png" id="1_0u3ex"]
+[ext_resource type="Script" path="res://Scripts/Levels.gd" id="1_cmye5"]
+[ext_resource type="Texture2D" uid="uid://cery6e6oeppou" path="res://_GAME/1_Art/2_Sprites/2_Tilesets/tileset_lava_temporal.png" id="2_3qj7t"]
+[ext_resource type="PackedScene" uid="uid://4aewfudjo5ir" path="res://_GAME/2_Scenes/Ladder.tscn" id="3_pqyrj"]
+[ext_resource type="PackedScene" uid="uid://1tcw1j6lbf02" path="res://_GAME/2_Scenes/Jumper.tscn" id="4_kl67m"]
+[ext_resource type="PackedScene" uid="uid://tvmix8sry2al" path="res://_GAME/2_Scenes/Portal.tscn" id="5_xb234"]
+[ext_resource type="PackedScene" uid="uid://cpamrvhl58p5c" path="res://_GAME/2_Scenes/Main_Character.tscn" id="7_lycs3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t5o52"]
-texture = ExtResource("1_2em8f")
+texture = ExtResource("1_0u3ex")
 2:1/0 = 0
 2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:1/0/physics_layer_0/angular_velocity = 0.0
@@ -98,7 +98,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_t5o52")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_osutt"]
-texture = ExtResource("2_aa6fv")
+texture = ExtResource("2_3qj7t")
 2:0/0 = 0
 2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:0/0/physics_layer_0/angular_velocity = 0.0
@@ -239,8 +239,8 @@ size = Vector2(12, 4.97706)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bbhgg"]
 size = Vector2(48, 6)
 
-[node name="Testing_Scene" type="Node2D"]
-script = ExtResource("1_u854m")
+[node name="Testing_Scene_2" type="Node2D"]
+script = ExtResource("1_cmye5")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_xfdr5")
@@ -252,16 +252,16 @@ tile_set = SubResource("TileSet_y2xp4")
 format = 2
 layer_0/tile_data = PackedInt32Array(-589785, 589824, 1, -589783, 589824, 1, -458710, 589824, 1, -458708, 589824, 1, -327634, 589824, 1, -327632, 589824, 1, -589769, 589824, 1, -917455, 589824, 1)
 
-[node name="Ladder1" parent="." instance=ExtResource("2_e6ff5")]
+[node name="Ladder1" parent="." instance=ExtResource("3_pqyrj")]
 position = Vector2(984, -76)
 
-[node name="Ladder2" parent="." instance=ExtResource("2_e6ff5")]
+[node name="Ladder2" parent="." instance=ExtResource("3_pqyrj")]
 position = Vector2(952, -124)
 
-[node name="Ladder3" parent="." instance=ExtResource("2_e6ff5")]
+[node name="Ladder3" parent="." instance=ExtResource("3_pqyrj")]
 position = Vector2(872, -204)
 
-[node name="Jumper" parent="." instance=ExtResource("3_mebr1")]
+[node name="Jumper" parent="." instance=ExtResource("4_kl67m")]
 position = Vector2(612, -116)
 
 [node name="One_Way_Collisions" type="Node" parent="."]
@@ -322,11 +322,11 @@ position = Vector2(1.86768, 0.650192)
 shape = SubResource("RectangleShape2D_bbhgg")
 one_way_collision = true
 
-[node name="Main_Character" parent="." instance=ExtResource("2_3dc4x")]
-position = Vector2(952, -52)
+[node name="Main_Character" parent="." instance=ExtResource("7_lycs3")]
+position = Vector2(69, -53)
 
-[node name="Testing_Scene_2" parent="." instance=ExtResource("6_3i3lm")]
-position = Vector2(1126, -101)
+[node name="Testing_Scene" parent="." instance=ExtResource("5_xb234")]
+position = Vector2(10, -102)
 
-[node name="Testing_Scene_2Pos" type="Marker2D" parent="."]
-position = Vector2(1090, -44)
+[node name="Testing_ScenePos" type="Marker2D" parent="."]
+position = Vector2(42, -44)

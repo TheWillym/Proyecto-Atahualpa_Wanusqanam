@@ -1,8 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://bulewhnoari0x"]
+[gd_scene load_steps=3 format=3 uid="uid://tvmix8sry2al"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ibjil"]
+[ext_resource type="Script" path="res://Scripts/Portal.gd" id="1_1u78k"]
 
-[node name="Area2D" type="Area2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wr80i"]
+size = Vector2(20, 139)
+
+[node name="Portal" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_1u78k")
+metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_ibjil")
+shape = SubResource("RectangleShape2D_wr80i")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

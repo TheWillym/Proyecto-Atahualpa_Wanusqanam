@@ -14,6 +14,14 @@ config/name="Proyecto - Atahualpa Wañusqañam"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://_GAME/1_Art/1_Icon/Icon Temporal.png"
 
+[autoload]
+
+Global="*res://_GAME/2_Scenes/Global.tscn"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg")
+
 [input]
 
 Up={

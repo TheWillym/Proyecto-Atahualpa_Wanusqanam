@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://7qctk8t5ugvb"
-path="res://.godot/imported/P._Principal_Mark_2_cooregido1-Idle-sheet.png-488bb93a42fb9d83b11ccc7f5c26cd3f.ctex"
+uid="uid://bl6jfc7m6f4h7"
+path="res://.godot/imported/Animation-PJ-Sheet.png-f8580156e91b2c77c650507f54e7bb4e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://_GAME/1_Art/2_Sprites/6_Characters/P._Principal_Mark_2_cooregido1-Idle-sheet.png"
-dest_files=["res://.godot/imported/P._Principal_Mark_2_cooregido1-Idle-sheet.png-488bb93a42fb9d83b11ccc7f5c26cd3f.ctex"]
+source_file="res://_GAME/1_Art/2_Sprites/6_Characters/Animation-PJ-Sheet.png"
+dest_files=["res://.godot/imported/Animation-PJ-Sheet.png-f8580156e91b2c77c650507f54e7bb4e.ctex"]
 
 [params]
 
