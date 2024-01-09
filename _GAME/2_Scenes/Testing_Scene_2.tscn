@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dlimrm0saj0k7" path="res://_GAME/1_Art/2_Sprites/2_Tilesets/tileset_dirt_temporal.png" id="1_0u3ex"]
 [ext_resource type="Script" path="res://Scripts/Levels.gd" id="1_cmye5"]
 [ext_resource type="Texture2D" uid="uid://cery6e6oeppou" path="res://_GAME/1_Art/2_Sprites/2_Tilesets/tileset_lava_temporal.png" id="2_3qj7t"]
-[ext_resource type="Texture2D" uid="uid://bv5l00bt2sp0m" path="res://_GAME/1_Art/2_Sprites/2_Tilesets/Tilesets_Suelo de tierra.png" id="3_lwk6k"]
+[ext_resource type="Texture2D" uid="uid://c5oexoyhrm808" path="res://_GAME/1_Art/2_Sprites/2_Tilesets/Tilesets_Suelo de tierra.png" id="3_lwk6k"]
 [ext_resource type="PackedScene" uid="uid://4aewfudjo5ir" path="res://_GAME/2_Scenes/Ladder.tscn" id="3_pqyrj"]
 [ext_resource type="PackedScene" uid="uid://1tcw1j6lbf02" path="res://_GAME/2_Scenes/Jumper.tscn" id="4_kl67m"]
 [ext_resource type="PackedScene" uid="uid://tvmix8sry2al" path="res://_GAME/2_Scenes/Portal.tscn" id="5_xb234"]
