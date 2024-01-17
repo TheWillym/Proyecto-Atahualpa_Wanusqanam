@@ -16,6 +16,8 @@ var going_up = false
 var colliding_Jumper = false
 var jump_UP = false
 
+var colliding_Door = false
+var door_Entrance = false
 
 #Variables de salto.
 @export var jump_Height = - 150
@@ -94,6 +96,11 @@ func _physics_process(delta):
 		else:
 			if going_up:
 				velocity.y = 0
+				
+	if colliding_Door:
+		Global.from_level = get_parent().name
+		get_tree().change_scene_to_file("res://_GAME/2_Scenes/" + self.name + ".tscn")
+		
 
 				
 	if colliding_Jumper:
@@ -199,3 +206,18 @@ func _on_climb_up_component_area_entered(area):
 	area.get_name()
 	if area.is_in_group("Climb"):
 		colliding_Jumper = true
+
+func _on_door_component_area_exited(area):
+	area.get_name()
+	if area.is_in_group("Door"):
+		colliding_Door = false
+		door_Entrance = false
+
+func _on_door_component_area_entered(area):
+	area.get_name()
+	if area.is_in_group("Door"):
+		colliding_Door = true
+	
+
+
+

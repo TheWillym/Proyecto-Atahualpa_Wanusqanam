@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cpamrvhl58p5c"]
+[gd_scene load_steps=10 format=3 uid="uid://cpamrvhl58p5c"]
 
 [ext_resource type="Script" path="res://Scripts/Main_Character.gd" id="1_77l1r"]
 [ext_resource type="Texture2D" uid="uid://bl6jfc7m6f4h7" path="res://_GAME/1_Art/2_Sprites/6_Characters/Animation-PJ-Sheet.png" id="2_3o4a0"]
@@ -8,6 +8,9 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_trmb3"]
 radius = 7.0
 height = 34.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4k1c0"]
+size = Vector2(18, 38)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sujcg"]
 size = Vector2(2, 27)
@@ -26,6 +29,11 @@ script = ExtResource("1_77l1r")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_trmb3")
+
+[node name="Door_Component" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door_Component"]
+shape = SubResource("RectangleShape2D_4k1c0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, 1)
@@ -87,6 +95,8 @@ drag_bottom_margin = 0.05
 wait_time = 3.0
 one_shot = true
 
+[connection signal="area_entered" from="Door_Component" to="." method="_on_door_component_area_entered"]
+[connection signal="area_exited" from="Door_Component" to="." method="_on_door_component_area_exited"]
 [connection signal="area_entered" from="Ladder_Component" to="." method="_on_ladder_component_area_entered"]
 [connection signal="area_exited" from="Ladder_Component" to="." method="_on_ladder_component_area_exited"]
 [connection signal="area_entered" from="Jumper_Component" to="." method="_on_climb_up_component_area_entered"]
