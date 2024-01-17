@@ -1,0 +1,149 @@
+[gd_scene load_steps=11 format=3 uid="uid://bbimn2g4s26b2"]
+
+[ext_resource type="Texture2D" uid="uid://1gfocn84235h" path="res://_GAME/1_Art/2_Sprites/2_Tilesets/cielo.png" id="1_sbbvq"]
+[ext_resource type="Texture2D" uid="uid://b5ufyet4hhput" path="res://_GAME/1_Art/2_Sprites/1_Backgrounds/Montana_back.png" id="2_h535o"]
+[ext_resource type="Texture2D" uid="uid://dcqut3ro53csy" path="res://_GAME/1_Art/2_Sprites/1_Backgrounds/Montana_Front.png" id="3_16eii"]
+[ext_resource type="Texture2D" uid="uid://c5oexoyhrm808" path="res://_GAME/1_Art/2_Sprites/2_Tilesets/Tilesets_Suelo de tierra.png" id="4_s433r"]
+[ext_resource type="Texture2D" uid="uid://benbb1qpsm57n" path="res://_GAME/1_Art/2_Sprites/1_Backgrounds/MURO_NIVEL_1.png" id="5_rp2gr"]
+[ext_resource type="Texture2D" uid="uid://2dvnk7sbump5" path="res://_GAME/1_Art/1_Icon/Logo A.png" id="6_uglv7"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0glkg"]
+texture = ExtResource("4_s433r")
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+8:0/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+8:1/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+8:2/0 = 0
+9:2/0 = 0
+10:2/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+8:3/0 = 0
+9:3/0 = 0
+10:3/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_n0xc1"]
+sources/0 = SubResource("TileSetAtlasSource_0glkg")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tg0e8"]
+bg_color = Color(0.843137, 0.45098, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 10
+shadow_color = Color(0.180392, 0, 0.00784314, 0.6)
+shadow_size = 5
+anti_aliasing = false
+anti_aliasing_size = 0.01
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m7unx"]
+bg_color = Color(1, 0.772549, 0.431373, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 10
+shadow_color = Color(0, 0, 0, 1)
+shadow_size = 1
+anti_aliasing = false
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Cielo" type="Sprite2D" parent="."]
+position = Vector2(575.5, 326)
+scale = Vector2(0.605729, 4.38667)
+texture = ExtResource("1_sbbvq")
+
+[node name="MontanaBack" type="Sprite2D" parent="."]
+position = Vector2(631, 235)
+scale = Vector2(1.31562, 2.50667)
+texture = ExtResource("2_h535o")
+
+[node name="MontanaFront" type="Sprite2D" parent="."]
+position = Vector2(654, 338)
+scale = Vector2(1.30938, 3.12)
+texture = ExtResource("3_16eii")
+
+[node name="TileMap2" type="TileMap" parent="."]
+visible = false
+scale = Vector2(4.5, 4.5)
+tile_set = SubResource("TileSet_n0xc1")
+cell_quadrant_size = 32
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 196608, 2, 2, 196608, 2, 3, 196608, 2, 4, 196608, 2, 5, 196608, 2, 6, 196608, 2, 65543, 196608, 2, 65544, 196608, 2, 8, 196608, 2, 9, 196608, 2, 10, 196608, 2, 11, 196608, 2, 12, 196608, 2, 13, 196608, 2, 14, 196608, 2, 15, 196608, 2, 7, 196608, 2, 65537, 196608, 2, 65536, 196608, 2, 65540, 196608, 2, 65541, 196608, 2, 65542, 196608, 2, 65545, 196608, 2, 65546, 196608, 2, 65547, 196608, 2, 65548, 196608, 2, 65549, 196608, 2, 65550, 196608, 2, 65551, 196608, 2, 131085, 196608, 2, 131084, 196608, 2, 131083, 196608, 2, 131082, 196608, 2, 131081, 196608, 2, 131080, 196608, 2, 131079, 196608, 2, 131078, 196608, 2, 131077, 196608, 2, 131076, 196608, 2, 131075, 196608, 2, 131074, 196608, 2, 131073, 196608, 2, 131072, 196608, 2, 131086, 196608, 2, 131087, 196608, 2, 196623, 196608, 2, 196622, 196608, 2, 196621, 196608, 2, 196620, 196608, 2, 196619, 196608, 2, 196618, 196608, 2, 196617, 196608, 2, 196616, 196608, 2, 196615, 196608, 2, 196614, 196608, 2, 196613, 196608, 2, 196612, 196608, 2, 196611, 196608, 2, 196610, 196608, 2, 196609, 196608, 2, 196608, 196608, 2, 262151, 196608, 2, 262152, 196608, 2, 262153, 196608, 2, 262154, 196608, 2, 262155, 196608, 2, 262156, 196608, 2, 262157, 196608, 2, 262158, 196608, 2, 262159, 196608, 2, 262144, 196608, 2, 262145, 196608, 2, 262146, 196608, 2, 262147, 196608, 2, 262148, 196608, 2, 262149, 196608, 2, 262150, 196608, 2, 327680, 196608, 2, 327681, 196608, 2, 327682, 196608, 2, 327683, 196608, 2, 327684, 196608, 2, 393221, 196608, 2, 393222, 196608, 2, 393220, 196608, 2, 393219, 196608, 2, 393218, 196608, 2, 393223, 196608, 2, 393224, 196608, 2, 393225, 196608, 2, 393226, 196608, 2, 393227, 196608, 2, 393228, 196608, 2, 393229, 196608, 2, 393230, 196608, 2, 393231, 196608, 2, 327685, 196608, 2, 327686, 196608, 2, 327687, 196608, 2, 327688, 196608, 2, 327689, 196608, 2, 327690, 196608, 2, 327691, 196608, 2, 327692, 196608, 2, 327693, 196608, 2, 327694, 196608, 2, 327695, 196608, 2, 458764, 196608, 2, 458765, 196608, 2, 458766, 196608, 2, 458767, 196608, 2, 393217, 196608, 2, 393216, 196608, 2, 458758, 196608, 2, 458759, 196608, 2, 458760, 196608, 2, 458753, 196608, 2, 458754, 196608, 2, 458755, 196608, 2, 458756, 196608, 2, 458757, 196608, 2, 458761, 196608, 2, 458762, 196608, 2, 458763, 196608, 2, 458752, 196608, 2, 524288, 196608, 2, 524289, 196608, 2, 524290, 196608, 2, 589826, 196608, 2, 589825, 196608, 2, 589824, 196608, 2, 524291, 196608, 2, 524292, 196608, 2, 524293, 196608, 2, 589829, 196608, 2, 589830, 196608, 2, 589831, 196608, 2, 589832, 196608, 2, 589833, 196608, 2, 589828, 196608, 2, 589827, 196608, 2, 589834, 196608, 2, 589835, 196608, 2, 589836, 196608, 2, 589837, 196608, 2, 589838, 196608, 2, 589839, 196608, 2, 524303, 196608, 2, 524302, 196608, 2, 524301, 196608, 2, 524300, 196608, 2, 524299, 196608, 2, 524298, 196608, 2, 524297, 196608, 2, 524296, 196608, 2, 524295, 196608, 2, 524294, 196608, 2, 1, 196608, 2)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 458.0
+offset_top = 385.0
+offset_right = 688.0
+offset_bottom = 425.0
+alignment = 1
+metadata/_edit_group_ = true
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_tg0e8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_m7unx")
+theme_override_styles/focus = SubResource("StyleBoxFlat_m7unx")
+text = "Start"
+metadata/_edit_group_ = true
+
+[node name="MuroNivel1" type="Sprite2D" parent="."]
+position = Vector2(662, 510.609)
+scale = Vector2(3.09939, 4.78588)
+texture = ExtResource("5_rp2gr")
+
+[node name="TileMap" type="TileMap" parent="."]
+scale = Vector2(4.5, 4.5)
+tile_set = SubResource("TileSet_n0xc1")
+cell_quadrant_size = 32
+format = 2
+layer_0/tile_data = PackedInt32Array(458752, 65536, 1, 458753, 131072, 1, 458754, 196608, 1, 458755, 262144, 1, 458756, 196608, 1, 458757, 262144, 1, 458758, 196608, 1, 458759, 262144, 1, 458760, 196608, 1, 458761, 262144, 1, 458762, 196608, 1, 458763, 262144, 1, 458764, 196608, 1, 458765, 262144, 1, 458766, 327680, 1, 458767, 393216, 1, 524289, 131072, 2, 524288, 131072, 1, 524302, 327680, 2, 524303, 327680, 1, 524290, 196608, 2, 524291, 196608, 3, 524292, 196608, 2, 524293, 196608, 2, 524294, 196608, 2, 524295, 262144, 2, 524296, 196608, 2, 524297, 196608, 2, 524298, 196608, 2, 524299, 196608, 2, 524300, 262144, 3, 524301, 196608, 2, 393217, 131072, 0, 393218, 196608, 0, 393219, 262144, 0, 393220, 327680, 0, 393221, 131072, 0, 393222, 196608, 0, 393223, 262144, 0, 393224, 327680, 0, 393225, 131072, 0, 393226, 196608, 0, 393227, 262144, 0, 393228, 327680, 0, 393229, 196608, 0, 393230, 262144, 0)
+
+[node name="LogoA" type="Sprite2D" parent="."]
+position = Vector2(575, 225)
+scale = Vector2(5.15234, 5.15234)
+texture = ExtResource("6_uglv7")
