@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://b274l6bxpfi51"]
+
+[ext_resource type="Texture2D" uid="uid://dxuyy7egub4fb" path="res://_GAME/1_Art/2_Sprites/8_NPCs/NPC_1.png" id="1_ccar7"]
+[ext_resource type="Script" path="res://NPC_1.gd" id="2_abjyv"]
+
+[sub_resource type="Animation" id="Animation_hu8s2"]
+resource_name = "Idle"
+length = 0.9
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_25cro"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ru65g"]
+_data = {
+"Idle": SubResource("Animation_hu8s2"),
+"RESET": SubResource("Animation_25cro")
+}
+
+[node name="NPC_1" type="Sprite2D"]
+position = Vector2(2, 0)
+texture = ExtResource("1_ccar7")
+hframes = 5
+script = ExtResource("2_abjyv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ru65g")
+}

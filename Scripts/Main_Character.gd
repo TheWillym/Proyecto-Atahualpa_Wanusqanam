@@ -18,6 +18,9 @@ var jump_UP = false
 
 var colliding_Door = false
 var door_Entrance = false
+var no_moving = false
+
+var input_vector: Vector2 = Vector2.ZERO
 
 #Variables de salto.
 @export var jump_Height = - 150
@@ -40,106 +43,128 @@ var is_dodging = false
 
 #Variable de asignación del sprite.
 @onready var sprite = $Sprite2D
+@onready var animationPlayer = $AnimationPlayer
+@onready var actionable_finder: Area2D = $Interact
 
 	#PROCESOS
 
 func _ready():
 	movement.setup(self)
+	
+func _unhandled_input(_event: InputEvent) -> void:
+	if Input.is_action_just_pressed("Interact"):
+		var actionables = actionable_finder.get_overlapping_areas()
+		if actionables.size() > 0:
+			no_moving = true
+			actionables[0].action()
+			return
+	var x_axis: float = Input.get_axis("Left", "Right")
+	var y_axis: float = Input.get_axis("Up", "Down")
+	if x_axis:
+		input_vector = x_axis * Vector2.RIGHT
+	elif y_axis:
+		input_vector = y_axis * Vector2.DOWN
+	else:
+		input_vector = Vector2.ZERO
+		no_moving = false
 
 #Proceso para la gravedad.
 func _physics_process(delta):
 	movement.update(delta)
 #Proceso para el salto, aquí se determina la cantidad de saltos desbloqueables.
-	if is_on_floor() && !going_up && num_Jump != 0:
-		num_Jump = 0
-	if num_Jump < max_Jump:
-		if Input.is_action_just_pressed("ui_accept"):
-#			$AnimationPlayer.play("Jump")
-			velocity.y = jump_Height
-			num_Jump += 1
+	if !no_moving:
+		if is_on_floor() && !going_up && num_Jump != 0:
+			num_Jump = 0
+		if num_Jump < max_Jump:
+			if Input.is_action_just_pressed("ui_accept"):
+				velocity.y = jump_Height
+				$AnimationPlayer.play("Jump")
+				num_Jump += 1
 
-#Proceso para el movimiento horizontal, aquí se determina la dirección del movimiento
-#y el cambio de dirección del sprite; esta condicionado con el proceso de la esquiva.
-	var direction_Move = Input.get_axis("Right", "Left")
-	if !is_dodging && $TimerTakeDamage.is_stopped():
-		if direction_Move:
-#			$AnimationPlayer.play("Walk")
-			if direction_Move > 0:
-				$Sprite2D.scale.x = -1
-				velocity.x = direction_Move - move_Speed
+	#Proceso para el movimiento horizontal, aquí se determina la dirección del movimiento
+	#y el cambio de dirección del sprite; esta condicionado con el proceso de la esquiva.
+		var direction_Move = Input.get_axis("Right", "Left")
+		if !is_dodging && $TimerTakeDamage.is_stopped():
+			if direction_Move:
+				$AnimationPlayer.play("Walk")
+				if direction_Move > 0:
+					$Sprite2D.scale.x = -1
+					velocity.x = direction_Move - move_Speed
+				else:
+					$Sprite2D.scale.x = 1
+					velocity.x = direction_Move + move_Speed
 			else:
-				$Sprite2D.scale.x = 1
-				velocity.x = direction_Move + move_Speed
+				$AnimationPlayer.play("Idle")
+				$AnimationPlayer.speed_scale = 1.0
+				velocity.x = move_toward(velocity.x, 0, move_Speed)
 		else:
-#			$AnimationPlayer.play("Idle")
-			$AnimationPlayer.speed_scale = 1.0
-			velocity.x = move_toward(velocity.x, 0, move_Speed)
-	else:
-		if is_dodging:
-			velocity.x = lerp(velocity.x, 0.0, 0.1)
-		else:
-#			$AnimationPlayer.play("Idle")
-			$AnimationPlayer.speed_scale = 1.0
-			velocity.x = move_toward(velocity.x, 0.0, move_Speed)
+			if is_dodging:
+				velocity.x = lerp(velocity.x, 0.0, 0.1)
+			else:
+				$AnimationPlayer.play("Idle")
+				$AnimationPlayer.speed_scale = 1.0
+				velocity.x = move_toward(velocity.x, 0.0, move_Speed)
+				
+		if colliding_Ladder:
+			if Input.is_action_pressed("Up"):
+				$AnimationPlayer.play("Up-Ladder")
+				going_up = true
+				velocity.y = -move_Speed
+				velocity.x = 0
+			elif Input.is_action_pressed("Down"):
+				$AnimationPlayer.play("Up-Ladder")
+				going_up = true
+				velocity.y = move_Speed
+			elif Input.is_action_pressed("ui_accept"):
+				$AnimationPlayer.play("Jump")
+				going_up = false
+				velocity.y = 2 * -move_Speed
+			else:
+				if going_up:
+					velocity.y = 0
+					
+		if colliding_Door:
+			if Input.is_action_pressed("Up"):
+				$AnimationPlayer.play("Entrance")
+				Global.from_level = get_parent().name
+				get_tree().change_scene_to_file("res://_GAME/2_Scenes/Nivel_4.tscn")
 			
-	if colliding_Ladder:
-		if Input.is_action_pressed("Up"):
-			going_up = true
-			velocity.y = -move_Speed
-			velocity.x = 0
-		elif Input.is_action_pressed("Down"):
-			going_up = true
-			velocity.y = move_Speed
-		elif Input.is_action_pressed("ui_accept"):
-			going_up = false
-			velocity.y = 2 * -move_Speed
-		else:
-			if going_up:
-				velocity.y = 0
-				
-	if colliding_Door:
-		Global.from_level = get_parent().name
-		get_tree().change_scene_to_file("res://_GAME/2_Scenes/" + self.name + ".tscn")
-		
+		if colliding_Jumper:
+			if Input.is_action_pressed("ui_accept"):
+				jump_UP = true
+				velocity.y = -500
+			
+	#Proceso para la esquiva.
+		if is_dodging:
+			current_Time_Dodge += delta
+			current_Duplicate_Time_Dodge += delta
+			if current_Time_Dodge >= time_Dodge:
+				current_Duplicate_Time_Dodge = 0.0
+				current_Time_Dodge = 0.0
+				is_dodging = false
+			if current_Duplicate_Time_Dodge >= duplicate_Time_Dodge:
+				current_Duplicate_Time_Dodge = 0.0
+	#			createDuplicate()
+		if is_dodging == false && Input.is_action_just_pressed("Dodge") && is_on_floor():
+			$AnimationPlayer.play("Dash")
+			is_dodging = true
+			if $Sprite2D.scale.x == 1:
+				velocity.x = move_Dodge
+			else:
+				velocity.x = -move_Dodge
+	#		createDuplicate()
 
-				
-	if colliding_Jumper:
-		if Input.is_action_pressed("ui_accept"):
-			jump_UP = true
-			velocity.y = -500
-		
-#Proceso para la esquiva.
-	if is_dodging:
-		current_Time_Dodge += delta
-		current_Duplicate_Time_Dodge += delta
-		if current_Time_Dodge >= time_Dodge:
-			current_Duplicate_Time_Dodge = 0.0
-			current_Time_Dodge = 0.0
-			is_dodging = false
-		if current_Duplicate_Time_Dodge >= duplicate_Time_Dodge:
-			current_Duplicate_Time_Dodge = 0.0
-#			createDuplicate()
-	if is_dodging == false && Input.is_action_just_pressed("Dodge") && is_on_floor():
-		is_dodging = true
-		if $Sprite2D.scale.x == 1:
-			velocity.x = move_Dodge
-		else:
-			velocity.x = -move_Dodge
-#		createDuplicate()
+	#func knockback():
+	#	if knockback_vector != Vector2.ZERO:
+	#		velocity = knockback_vector
 
-#func knockback():
-#	if knockback_vector != Vector2.ZERO:
-#		velocity = knockback_vector
-
-	move_and_slide()
+		move_and_slide()
 	
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("Down") and is_on_floor():
+	if event.is_action_pressed("Down") and is_on_floor() and no_moving:
 		position.y += 1.5
 		
-
-	
-func take_damage(iPos: Vector2, iDamageAmount: int):
+func take_damage(iPos: Vector2, _iDamageAmount: int):
 	if !is_dodging && $TimerTakeDamage.is_stopped():
 		$TimerTakeDamage.start(0)
 		if (iPos.x < position.x):
@@ -183,7 +208,6 @@ func take_damage(iPos: Vector2, iDamageAmount: int):
 func _on_timer_take_damage_timeout():
 		$TimerTakeDamage.stop()
 
-
 func _on_ladder_component_area_exited(area):
 	area.get_name()
 	if area.is_in_group("Ladder"):
@@ -194,7 +218,6 @@ func _on_ladder_component_area_entered(area):
 	area.get_name()
 	if area.is_in_group("Ladder"):
 		colliding_Ladder = true
-
 
 func _on_climb_up_component_area_exited(area):
 	area.get_name()
@@ -217,7 +240,3 @@ func _on_door_component_area_entered(area):
 	area.get_name()
 	if area.is_in_group("Door"):
 		colliding_Door = true
-	
-
-
-

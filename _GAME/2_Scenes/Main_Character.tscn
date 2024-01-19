@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cpamrvhl58p5c"]
+[gd_scene load_steps=19 format=3 uid="uid://cpamrvhl58p5c"]
 
 [ext_resource type="Script" path="res://Scripts/Main_Character.gd" id="1_77l1r"]
 [ext_resource type="Texture2D" uid="uid://bl6jfc7m6f4h7" path="res://_GAME/1_Art/2_Sprites/6_Characters/Animation-PJ-Sheet.png" id="2_3o4a0"]
@@ -12,6 +12,131 @@ height = 34.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4k1c0"]
 size = Vector2(18, 38)
 
+[sub_resource type="Animation" id="Animation_tkwa0"]
+resource_name = "Walk"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.5, 0.6, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_16sqr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_evlcv"]
+resource_name = "Idle"
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [7, 8, 9, 10]
+}
+
+[sub_resource type="Animation" id="Animation_b1pb3"]
+resource_name = "Jump"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+
+[sub_resource type="Animation" id="Animation_3cgp1"]
+resource_name = "Dash"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [22]
+}
+
+[sub_resource type="Animation" id="Animation_vfm8c"]
+resource_name = "Entrance"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [23]
+}
+
+[sub_resource type="Animation" id="Animation_7bwau"]
+resource_name = "Up-Ladder"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [24, 25]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3ed85"]
+_data = {
+"Dash": SubResource("Animation_3cgp1"),
+"Entrance": SubResource("Animation_vfm8c"),
+"Idle": SubResource("Animation_evlcv"),
+"Jump": SubResource("Animation_b1pb3"),
+"RESET": SubResource("Animation_16sqr"),
+"Up-Ladder": SubResource("Animation_7bwau"),
+"Walk": SubResource("Animation_tkwa0")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sujcg"]
 size = Vector2(2, 27)
 
@@ -20,6 +145,9 @@ size = Vector2(6, 2)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ks1ex"]
 size = Vector2(5, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lbm5n"]
+size = Vector2(20, 39)
 
 [node name="Main_Character" type="CharacterBody2D"]
 collision_layer = 2
@@ -31,6 +159,8 @@ position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_trmb3")
 
 [node name="Door_Component" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door_Component"]
 shape = SubResource("RectangleShape2D_4k1c0")
@@ -40,10 +170,26 @@ position = Vector2(0, 1)
 texture = ExtResource("2_3o4a0")
 hframes = 6
 vframes = 6
+frame = 1
+metadata/_aseprite_wizard_config_ = {
+"i_mode": -1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "_",
+"o_folder": "res://_GAME/1_Art/2_Sprites/6_Characters/Player",
+"o_name": "Player",
+"only_visible": false,
+"op_exp": true,
+"player": "AnimationPlayer",
+"source": "res://_GAME/1_Art/2_Sprites/6_Characters/Player/Animation-PJ.aseprite"
+}
 
 [node name="Movement" parent="." instance=ExtResource("3_4of06")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_3ed85")
+}
 
 [node name="Health_Component" parent="." instance=ExtResource("4_m5ppv")]
 collision_layer = 2
@@ -79,12 +225,11 @@ limit_top = -500
 limit_right = 815
 limit_bottom = 10
 limit_smoothed = true
-position_smoothing_enabled = true
-position_smoothing_speed = 7.0
+position_smoothing_speed = 10.0
 rotation_smoothing_speed = 3.0
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
-drag_horizontal_offset = 0.2
+drag_horizontal_offset = -0.2
 drag_vertical_offset = -0.2
 drag_left_margin = 0.01
 drag_top_margin = 0.05
@@ -94,6 +239,14 @@ drag_bottom_margin = 0.05
 [node name="TimerTakeDamage" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
+
+[node name="Interact" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interact"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_lbm5n")
 
 [connection signal="area_entered" from="Door_Component" to="." method="_on_door_component_area_entered"]
 [connection signal="area_exited" from="Door_Component" to="." method="_on_door_component_area_exited"]

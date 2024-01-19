@@ -1,0 +1,44 @@
+~ start
+
+if quipu_status != "has":
+	if quipu_status == "gave":
+		set quipu_status = "gave"
+	elif quipu_status == "find":
+		set quipu_status = "find"
+	else:
+		set quipu_status = "doesn´t"
+
+if quipu_status == "doesn´t"
+
+	Inca Joven: ¿Qué haces aquí?
+	Contadora: Me escondí al ver llegar a los Españoles, no venian con muchas intenciones de dialogar.
+	Inca Joven: ¿Por qué los Españoles nos atacarían?
+	Contadora: Parece que algo tuvo que ver Atahualpa, un hombre que le llaman "Pizarro" fue el que ordeno matarlo, y así ocasionar este caos.
+	Inca Joven: ¿Qué fue lo que paso entre Atahualpa y Pizarro?
+	Contadora: No lo sé, solo escuché que dejaron a Atahualpa amarrado en la plaza, como castigo de un monton de delitos, aun no entiendo de que delitos lo acusaban.
+	
+if quipu_status == "has":
+	Inca Joven: Tengo el quipu.
+	- Darle el quipu a la Contadora
+		set quipu_status = "gave"
+		Inca Joven: Aquí tienes el quipu.
+		Contadora: Oh, lo has encontrado, muchas gracias Joven; aquí estan guardados todos los registros, no se que habria echo sin el.
+		Contadora: Por cierto, antes de que te vallas, había un muchacho que tambien se habia escondido aquí, parece que el vio lo que paso.
+		Contadora: Si lo encuentras, podrias preguntarle mas sobre lo que ha pasado, no salio hace mucho, por lo que ha de estar cerca.
+elif quipu_status == "find"
+	Contadora: ¿Ya encontraste el quipu?, recuerdo que lo habian dejado en una caja gris.
+	
+elif quipu_status == "gave"
+	Contadora: Te deseo suerte en tu viaje.
+else:
+	Contadora: Oye, si tienes tiempo, me traes un quipu que esta por aquí, creo que lo dejaron dentro de una caja gris, pero con lo oscuro que esta, no la he visto.
+	Contadora: Te lo agradeceria bastante que me lo trajeras, es muy importante para mí.
+	set quipu_status = "find"
+=> END
+
+~ pick_quipu
+
+Inca Joven: He encontrado el quipu.
+set quipu_status = "has"
+
+=> END

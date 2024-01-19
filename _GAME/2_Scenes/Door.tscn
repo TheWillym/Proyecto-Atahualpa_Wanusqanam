@@ -1,11 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://dbtmxiyoooy44"]
+[gd_scene load_steps=3 format=3 uid="uid://dbtmxiyoooy44"]
+
+[sub_resource type="GDScript" id="GDScript_d5icy"]
+script/source = "extends Area2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yt1ci"]
 size = Vector2(16, 37)
 
 [node name="Door" type="Area2D" groups=["Door"]]
-collision_layer = 0
-collision_mask = 2
+collision_layer = 64
+collision_mask = 0
+script = SubResource("GDScript_d5icy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_yt1ci")
